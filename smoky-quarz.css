@@ -1,0 +1,292 @@
+/**
+Diamond shapes
+https://www.tiffany.de/engagement/diamond-education/diamond-shapes.html
+
+glass UI
+https://www.zeepalm.com/blog/unity-responsive-ui-layout-guide
+*/
+
+body {
+	background: #000;
+	color: #fff;
+	font-family: "Inter", sans-serif;
+	position: relative;
+	background-attachment: fixed;
+	background-color: #111927;
+	background-image: radial-gradient(
+			at 47% 33%,
+			hsl(285.21, 100%, 14%) 0,
+			transparent 59%
+		),
+		radial-gradient(at 82% 65%, hsl(289.71, 100%, 47%) 0, transparent 55%);
+}
+
+/**
+Definitions
+*/
+:root {
+	--text-color: #a1a1a1;
+	--accent-color: #111;
+	--geist-foreground-rgb: 255, 255, 255;
+	--border-radius: 12px;
+	
+	/* smoky quartz variables */
+	--sq-border-width-s: 0.5em;
+	--sq-border-width-m: 1em;
+	--sq-border-width-l: 2em;
+	--sq-backdrop-filter-blur: 1.2em;
+	
+	/* backgrounds */
+	--sq-bg-alpha-from: 0.75;
+	--sq-bg-alpha-to: 0.25;
+	--sq-bg-red-from: 	rgba(255,0,0,var(--sq-bg-alpha-from));
+	--sq-bg-red-to: 		rgba(96,0,0,var(--sq-bg-alpha-to));	
+	--sq-bg-green-from: rgba(0,255,0,var(--sq-bg-alpha-from));
+	--sq-bg-green-to: 	rgba(0,96,0,var(--sq-bg-alpha-to));
+	--sq-bg-blue-from: rgba(0,0,255,var(--sq-bg-alpha-from));
+	--sq-bg-blue-to: 	rgba(0,0,96,var(--sq-bg-alpha-to));
+	
+	--sq-bg-alpha-from-hover: 0.9;
+	--sq-bg-alpha-to-hover: 0.6;
+	--sq-bg-red-from-hover: 	rgba(255,0,0,var(--sq-bg-alpha-from-hover));
+	--sq-bg-red-to-hover: 		rgba(96,0,0,var(--sq-bg-alpha-to-hover));
+	--sq-bg-green-from-hover: 	rgba(0,255,0,var(--sq-bg-alpha-from-hover));
+	--sq-bg-green-to-hover: 		rgba(0,96,0,var(--sq-bg-alpha-to-hover));
+	--sq-bg-blue-from-hover: 	rgba(0,0,255,var(--sq-bg-alpha-from-hover));
+	--sq-bg-blue-to-hover: 		rgba(0,0,96,var(--sq-bg-alpha-to-hover));
+	
+	/* shadows */
+	--sq-shadow-alpha-inner: 0.1;
+	--sq-shadow-alpha-outer: 0.55;
+	
+	--sq-sh-red-inner: rgba(255, 0, 0, var(--sq-shadow-alpha-inner));
+	--sq-sh-red-outer: rgba(250, 0, 0, var(--sq-shadow-alpha-outer));
+	--sq-sh-green-inner: rgba(0, 255, 0, var(--sq-shadow-alpha-inner));
+	--sq-sh-green-outer: rgba(0, 250, 0, var(--sq-shadow-alpha-outer));
+	--sq-shadow-blue-inner: rgba(0, 0, 255, var(--sq-shadow-alpha-inner));
+	--sq-shadow-blue-outer: rgba(0, 0, 250, var(--sq-shadow-alpha-outer));
+	--sq-shadow-light-inner: rgba(255, 214, 170, var(--sq-shadow-alpha-inner));
+	--sq-shadow-light-outer: rgba(250, 250, 210, var(--sq-shadow-alpha-outer));
+	
+	
+}
+
+
+
+
+
+/**
+general
+*/
+.smokycard {
+	.icon {
+		position: relative;
+		display: inline-flex;
+		padding: 0.75em;
+		border-radius: 1em;
+		margin-right: 0.75;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	h2 {
+		font-size: 1.8rem !important;
+		display: inline-flex;
+	}
+	
+	position: relative;
+	padding: 1em;
+	flex: 1 1;
+}
+
+.smokyquartz {
+	cursor: pointer;
+	z-index: 1;
+	border-image-source: url("https://complexnetworks.de/dl/emeralddark.png");
+	border-image-slice: 100 fill;
+	border-image-outset: 0;
+	border-image-repeat: stretch;
+	backdrop-filter: blur(0.75em) brightness(65%);
+}
+.smokyquartz:hover { 	
+	backdrop-filter: blur(1.2em) brightness(45%);
+}
+
+
+/**
+Sizes
+*/
+
+.sq-s {
+	border-image-width: var(--sq-border-width-s);
+	border-radius: var(--sq-border-width-s);
+	padding: calc(var(--sq-border-width-s) + 1em);
+}
+
+.sq-m {
+	border-image-width: var(--sq-border-width-m);
+	border-radius: var(--sq-border-width-m);
+	padding: calc(var(--sq-border-width-m) + 1em);
+}
+
+.sq-l {
+	border-image-width: var(--sq-border-width-l);
+	border-radius: var(--sq-border-width-l);
+	padding: calc(var(--sq-border-width-l) + 1em);
+}
+
+
+
+/**
+backgrounds
+*/
+.sq-bg-red {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-red-from) 0%, var(--sq-bg-red-to) 100%);
+}
+.sq-bg-red-hover:hover, .sq-bg-red:hover {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-red-from-hover) 0%, var(--sq-bg-red-to-hover) 100%);
+}
+
+.sq-bg-green {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-green-from) 0%, var(--sq-bg-green-to) 100%);
+}
+.sq-bg-green-hover:hover, .sq-bg-green:hover {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-green-from-hover) 0%, var(--sq-bg-green-to-hover) 100%);
+}
+
+.sq-bg-blue {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-blue-from) 0%, var(--sq-bg-blue-to) 100%);
+}
+.sq-bg-blue-hover:hover, .sq-bg-blue:hover {
+	background: radial-gradient(farthest-corner at 33% 33%, var(--sq-bg-blue-from-hover) 0%, var(--sq-bg-blue-to-hover) 100%);
+}
+
+.sq-color-light {
+	background: radial-gradient(farthest-corner at 33% 33%, rgba(223,199,108,0.75) 0%, rgba(165,124,0,0.95)  100%);
+	backdrop-filter: blur(1em) brightness(75%);
+}
+.sq-color-light:hover {
+		background: radial-gradient(farthest-corner at 33% 33%, rgba(165,124,0,1) 0%, rgba(165,124,0,1) 100%);
+	}
+
+.sq-color-dark {
+	background: radial-gradient(farthest-corner at 33% 33%, rgba(92,0,128,0.75) 0%, rgba(32,08,48,0.25) 100%);
+backdrop-filter: blur(1em) brightness(75%);
+	
+}
+
+.sq-color-dark-hover:hover {
+		background: radial-gradient(farthest-corner at 33% 33%, rgba(92,0,128,0.9) 0%, rgba(32,08,48,0.6) 100%);
+		color: #dfc76c;
+	
+}
+
+
+/**
+Shadows for all sizes
+*/
+.sq-s.sq-shadow-red-hover:hover, .sq-s.sq-shadow-red {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-s)*0.75) var(--sq-sh-red-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-red-outer); /* outer */
+}
+.sq-m.sq-shadow-red-hover:hover, .sq-m.sq-shadow-red {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-m)*0.75) var(--sq-sh-red-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-red-outer); /* outer */
+}
+.sq-l.sq-shadow-red-hover:hover, .sq-l.sq-shadow-red {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-l)*0.75) var(--sq-sh-red-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-red-outer); /* outer */
+}
+
+
+.sq-s.sq-shadow-green-hover:hover, .sq-s.sq-shadow-green {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-s)*0.75) var(--sq-sh-green-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-green-outer); /* outer */
+}
+.sq-m.sq-shadow-green-hover:hover, .sq-m.sq-shadow-green {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-m)*0.75) var(--sq-sh-green-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-green-outer); /* outer */
+}
+.sq-l.sq-shadow-green-hover:hover, .sq-l.sq-shadow-green {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-l)*0.75) var(--sq-sh-green-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-sh-green-outer); /* outer */
+}
+
+
+.sq-s.sq-shadow-blue-hover:hover, .sq-s.sq-shadow-blue {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-s)*0.75) var(--sq-shadow-blue-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-shadow-blue-outer); /* outer */
+}
+.sq-m.sq-shadow-blue-hover:hover, .sq-m.sq-shadow-blue {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-m)*0.75) var(--sq-shadow-blue-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-shadow-blue-outer); /* outer */
+}
+.sq-l.sq-shadow-blue-hover:hover, .sq-l.sq-shadow-blue {
+	box-shadow: 
+			0 0px 0em calc(var(--sq-border-width-l)*0.75) var(--sq-shadow-blue-inner) inset, /* inner */ 
+			0 0px 1em 0.5em var(--sq-shadow-blue-outer); /* outer */
+}
+
+.sq-s.sq-shadow-light-hover:hover, .sq-s.sq-shadow-light {
+	box-shadow: 
+		0 0px 1em calc(var(--sq-border-width-l) * 0.75) var(--sq-shadow-light-inner) inset, /* inner */ 
+		0 0px 1em 0.5em var(--sq-shadow-light-outer); /* outer */
+}
+.sq-m.sq-shadow-light-hover:hover, .sq-m.sq-shadow-light {
+	box-shadow: 
+		0 0px 1em calc(var(--sq-border-width-l) * 0.75) var(--sq-shadow-light-inner) inset, /* inner */ 
+		0 0px 1em 0.5em var(--sq-shadow-light-outer); /* outer */
+}
+.sq-l.sq-shadow-light-hover:hover, .sq-l.sq-shadow-light {
+	box-shadow: 
+		0 0px 1em calc(var(--sq-border-width-l) * 0.75) var(--sq-shadow-light-inner) inset, /* inner */ 
+		0 0px 1em 0.5em var(--sq-shadow-light-outer); /* outer */
+}
+
+
+
+/**
+Helpers
+*/
+.sq-text-dark {
+	color:#28282B	;
+	font-weight: bold;
+}
+
+.sq-text-light {
+	/** color:#dfc76c 	; chrysler light gold */
+	color: #a57c00; 
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+/**
+helper classes
+*/
+.index-back {
+	z-index: -1000000
+}
+
+.text-center {
+	text-align: center
+}
+
+.sq-height-full {
+	height:100%
+}
+
+
